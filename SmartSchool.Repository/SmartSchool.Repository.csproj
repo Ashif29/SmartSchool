@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SmartSchool.Core\SmartSchool.Core.csproj" />
+  </ItemGroup>
+
 </Project>

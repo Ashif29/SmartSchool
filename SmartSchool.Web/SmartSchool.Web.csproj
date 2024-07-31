@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SmartSchool.Service\SmartSchool.Service.csproj" />
+  </ItemGroup>
+
 </Project>
