@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SmartSchool.Repository.DataAccess;
+using SmartSchool.Repository.Repositories.Contracts;
+using SmartSchool.Repository.Repositories.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSqlConnection"));
 });
+
+
+/* #####################   Repository Dependency Injection ######################## */
+
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
+
 
 builder.Services.AddControllersWithViews();
 
