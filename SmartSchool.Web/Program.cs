@@ -24,6 +24,7 @@ builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 /* #####################   Service Dependency Injection ######################## */
 
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 
 
