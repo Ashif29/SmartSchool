@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartSchool.Core.Models.Student;
+using SmartSchool.Core.Models.Teacher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace SmartSchool.Repository.DataAccess
 
         }
         public DbSet<Student> Students { get; set; }
+
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }
