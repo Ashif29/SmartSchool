@@ -14,5 +14,6 @@ namespace SmartSchool.Repository.DataAccess
         {
 
         }
+        public DbSet<Student> Students { get; set; }
     }
 }
