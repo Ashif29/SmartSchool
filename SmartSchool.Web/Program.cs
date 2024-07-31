@@ -1,6 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using SmartSchool.Repository.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSqlConnection"));
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
