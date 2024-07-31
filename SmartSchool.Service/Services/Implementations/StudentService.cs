@@ -1,5 +1,7 @@
 ﻿using SmartSchool.Core.Models.Student;
+using SmartSchool.Core.Models.Teacher;
 using SmartSchool.Repository.Repositories.Contracts;
+using SmartSchool.Repository.Repositories.Implementations;
 using SmartSchool.Service.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -18,9 +20,9 @@ namespace SmartSchool.Service.Services.Implementations
             _studentRepository = studentRepository;
         }
 
-        public Task CreateAsync(Student student)
+        public async Task CreateAsync(Student student)
         {
-            throw new NotImplementedException();
+            await _studentRepository.CreateAsync(student);
         }
 
         public async Task<List<Student>> GetAllAsync()
