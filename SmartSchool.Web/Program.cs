@@ -18,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 /* #####################   Repository Dependency Injection ######################## */
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
 
 /* #####################   Service Dependency Injection ######################## */
