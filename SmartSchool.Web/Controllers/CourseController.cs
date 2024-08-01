@@ -11,6 +11,10 @@ namespace SmartSchool.Web.Controllers
         {
             _courseService = courseService;
         }
-        
+        public async Task<IActionResult> Index()
+        {
+            var courses = await _courseService.GetAllAsync();
+            return View(courses);
+        }
     }
 }
