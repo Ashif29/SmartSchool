@@ -26,6 +26,7 @@ builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 
 
