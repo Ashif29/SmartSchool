@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Course>
-
+﻿
 <div class="w-100 card border-0 p-4">
     <div class="card-header bg-info bg-gradient ml-0 py-3">
         <div class="row">
@@ -26,28 +25,50 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var course in Model)
-                {
-                    <tr>
-                        <td>@course.CourseCode</td>
-                        <td>@course.Name</td>
-                        <td>@course.Description</td>
-                        <td>@course.CourseType</td>
-                        <td>
-                            <div class="w-75 btn-group" role="group">
-                                <a asp-controller="Course" asp-action="Update" asp-route-courseID="@course.Id" class="btn btn-success mx-2">
-                                        <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                                <a asp-controller="Villa" asp-action="Delete" asp-route-courseID="@course.Id" class="btn btn-danger mx-2">
-                                        <i class="bi bi-trash-fill"></i> Delete
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            <tbody id="table_data">
+                
             </tbody>
         </table>
     </div>
 </div>
+
+
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            GetAllCourses();
+        });
+
+        $('#btnCreateCourse').click(function () {
+            $('#CreateCourseModalShow').modal('show');
+        });
+
+        function GetAllCourses() {
+            $.ajax({
+                url: '/Course/GetCourseList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result, status, xhr) {
+                    var object = '';
+                    $.each(result, function (index, item) {
+                        object += '<tr>';
+                        object += '<td>' + item.courseCode + '</td>';
+                        object += '<td>' + item.name + '</td>';
+                        object += '<td>' + item.description + '</td>';
+                        object += '<td>' + item.courseType + '</td>';
+                        object += '<td><a href="#" class="btn btn-primary">Edit</a> || <a href="#" class="btn btn-danger">Delete</a></td>';
+                        object += '</tr>';
+                    });
+                    $('#table_data').html(object);
+                },
+                error: function (xhr, status, error) {
+                    alert("Data can't get");
+                }
+            });
+        }
+    </script>
+}
+
 

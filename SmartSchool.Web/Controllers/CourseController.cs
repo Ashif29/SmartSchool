@@ -15,8 +15,16 @@ namespace SmartSchool.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            //var courses = await _courseService.GetAllAsync();
+            return View();
+        }
+
+        [HttpGet]
+
+        public async Task<JsonResult> GetCourseList()
+        {
             var courses = await _courseService.GetAllAsync();
-            return View(courses);
+            return new JsonResult(courses);
         }
 
         public IActionResult Create()
