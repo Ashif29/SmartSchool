@@ -33,8 +33,15 @@ namespace SmartSchool.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Course course)
+        public JsonResult Create(Course courseObj)
         {
+            var course = new Course()
+            {
+                CourseCode = courseObj.CourseCode,
+                Name = courseObj.Name,
+                Description = courseObj.Description,
+                CourseType = courseObj.CourseType,
+            };
             if (course.Name == course.Description)
             {
                 ModelState.AddModelError("Name", "Name and Description cannot be the same");
@@ -45,7 +52,7 @@ namespace SmartSchool.Web.Controllers
                 _courseService.CreateAsync(course);
                 TempData["success"] = "The villa has been created successfully.";
             }
-            return View();
+            return new JsonResult("Course Saved Successfully");
         }
     }
 }

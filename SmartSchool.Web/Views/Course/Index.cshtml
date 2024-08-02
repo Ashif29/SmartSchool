@@ -1,4 +1,5 @@
-﻿
+﻿@model Course
+
 <div class="w-100 card border-0 p-4">
     <div class="card-header bg-info bg-gradient ml-0 py-3">
         <div class="row">
@@ -10,9 +11,11 @@
     <div class="card-body border p-4">
         <div class="row pb-3">
             <div class="col-6 offset-6 text-end">
-                <a asp-controller="Course" asp-action="Create" class="btn btn-secondary">
-                    <i class="bi bi-plus-circle"></i> Create New Course
-                </a>
+
+                <button type="button" id="btnCreateCourse" class="btn btn-sm btn-outline-success" data-bs-toggle="modal">
+                    Create new course
+                </button>
+
             </div>
         </div>
         <table class="table table-bordered table-striped">
@@ -29,6 +32,54 @@
                 
             </tbody>
         </table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="CreateCourseModalShow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="border: 1px solid #aaa; border-radius:7px;">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h2 class="modal-title text-center text-white" id="createCourseModalLabel">Create New Course</h2>
+
+            </div>
+            <div class="modal-body m-0">
+                <form method="post" class="row" enctype="multipart/form-data">
+                    <div class="p-3">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating py-1">
+                            <input asp-for="CourseCode" id="CourseCode" class="form-control border shadow" />
+                            <label asp-for="CourseCode" class="ms-2"></label>
+                            <span asp-validation-for="CourseCode" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Name" id="Name" class="form-control border shadow" />
+                            <label asp-for="Name" class="ms-2"></label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Description" id="Description" class="form-control border shadow" />
+                            <label asp-for="Description" class="ms-2"></label>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="CourseType" id="CourseType" class="form-control border shadow" />
+                            <label asp-for="CourseType" class="ms-2"></label>
+                            <span asp-validation-for="CourseType" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="CreateCourse" onclick="AddCourse()" data-bs-dismiss="modal">Create</button>
+                <button type="button" class="btn btn-danger" id="Cancel" data-bs-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -70,6 +121,43 @@
                     alert("Data can't get");
                 }
             });
+        }
+
+        function AddCourse() {
+            $('.spinner').show();
+            var objData = {
+                courseCode: $("#CourseCode").val(),
+                name: $("#Name").val(),
+                description: $("#Description").val(),
+                courseType: $("#CourseType").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                data: objData,
+                url: "@Url.Action("Create", "Course")",
+                success: function (data) {
+                    ClearTextBox();
+                    GetAllCourses();
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                }
+            });
+        }
+
+
+        function ClearTextBox(){
+            $("#CourseCode").val('');
+            $("#Name").val('');
+            $("#Description").val('');
+            $("#CourseType").val('');
         }
     </script>
 }
