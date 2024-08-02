@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - SmartSchool.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/spinner.css" />
     <link rel="stylesheet" href="~/SmartSchool.Web.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -35,6 +36,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <div class="loading spinner" style="display:none"></div>
             @RenderBody()
         </main>
     </div>

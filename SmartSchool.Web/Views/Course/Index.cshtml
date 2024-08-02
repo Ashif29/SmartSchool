@@ -46,11 +46,13 @@
         });
 
         function GetAllCourses() {
+            $('.spinner').show();
             $.ajax({
                 url: '/Course/GetCourseList',
                 type: 'GET',
                 dataType: 'json',
                 success: function (result, status, xhr) {
+                    $('.spinner').hide();
                     var object = '';
                     $.each(result, function (index, item) {
                         object += '<tr>';
@@ -64,6 +66,7 @@
                     $('#table_data').html(object);
                 },
                 error: function (xhr, status, error) {
+                    $('.spinner').hide();
                     alert("Data can't get");
                 }
             });
