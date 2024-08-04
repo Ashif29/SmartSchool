@@ -55,6 +55,21 @@ namespace SmartSchool.Web.Controllers
             return new JsonResult("Course Saved Successfully");
         }
 
+        [HttpGet]
+        public async Task<JsonResult> Update(int id)
+        {
+            var course = await _courseService.GetAsync(id);
+            return new JsonResult(course);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> Update(Course course)
+        {
+            await _courseService.UpdateAsync(course);
+            return new JsonResult("Course Updated");
+        }
+
 
         public async Task<JsonResult> Remove(int id)
         {

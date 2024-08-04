@@ -24,6 +24,7 @@
                     <th>Course Id</th>
                     <th>Course Code</th>
                     <th>Name</th>
+                    <th>Description</th>
                     <th>Course Type</th>
                     <th></th>
                 </tr>
@@ -47,6 +48,11 @@
                 <form method="post" class="row" enctype="multipart/form-data">
                     <div class="p-3">
                         <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating py-1">
+                            <input asp-for="Id" disabled="disabled" style="display:none" id="CourseId" class="form-control border shadow" />
+                            <label asp-for="Id" class="ms-2"></label>
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
                         <div class="form-floating py-1">
                             <input asp-for="CourseCode" id="CourseCode" class="form-control border shadow" />
                             <label asp-for="CourseCode" class="ms-2"></label>
@@ -76,6 +82,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="CreateCourse" onclick="AddCourse()" data-bs-dismiss="modal">Create</button>
+                <button type="button" class="btn btn-warning" style="display:none" id="UpdateCourse" onclick="UpdateCourse()" data-bs-dismiss="modal">Update</button>
                 <button type="button" class="btn btn-danger" id="Cancel" data-bs-dismiss="modal">Cancel</button>
             </div>
 
@@ -110,9 +117,10 @@
                         object += '<td>' + item.id + '</td>';
                         object += '<td>' + item.courseCode + '</td>';
                         object += '<td>' + item.name + '</td>';
+                        object += '<td>' + item.description + '</td>';
                         object += '<td>' + item.courseType + '</td>';
                         object += '<td>',
-                        object += '<a href="#" class="btn btn-primary">Edit</a>';
+                        object += '<a href="#" onclick="GetCourseById(' + item.id + ')" class="btn btn-primary">Edit</a>';
                         object += '||';
                         object += '<a href="#" onclick="RemoveCourse(' + item.id + ')" class="btn btn-danger">Delete</a>';
                         object += '</td>';
@@ -156,29 +164,82 @@
             });
         }
 
-        function RemoveCourse(id){
-            if(confirm('Are you sure, you want to delete this record?'))
+        function GetCourseById(id) {
             $.ajax({
-                url: '/Course/Remove?id=' + id,
-                success: function () {
-                    GetAllCourses();
-                },
-                error: function (xhr, status, error) {
-                    alert("Record Deleted UnsuccessFull.");
-                }
+                 url: '/Course/Update?id=' + id,
+                 type: 'GET',
+                 dataType: 'json',
+                 success: function (result) {
+                        $('#CourseId').css("display", "block");
+                        $('#CreateCourseModalShow').modal('show');
+                        $('#CreateCourse').css("display", "none");
+                        $('#UpdateCourse').css("display", "block");
+                        $('#CourseId').val(result.id);
+                        $('#CourseCode').val(result.courseCode);
+                        $('#Name').val(result.name);
+                        $('#Description').val(result.description);
+                        $('#CourseType').val(result.courseType);
+                 },
+                 error: function () {
+                     alert("Data can't get");
+                 }
             });
         }
 
+        function UpdateCourse() {
+            var objData = {
+                id: $("#CourseId").val(),
+                courseCode: $("#CourseCode").val(),
+                name: $("#Name").val(),
+                description: $("#Description").val(),
+                courseType: $("#CourseType").val()
+            };
+            $.ajax({
+                type: "POST",
+                data: objData,
+                url: "@Url.Action("Update", "Course")",
+                success: function (data) {
+                    ClearTextBox();
+                    GetAllCourses();
+                    $('#CreateCourse').css("display", "block");
+                    $('#UpdateCourse').css("display", "none");
+                    $('#CourseId').css("display", "none");
+                    $('#CourseId').hide();
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                }
+            });
+        }
+        
+        function RemoveCourse(id) {
+            if (confirm('Are you sure, you want to delete this record?')){
+                $.ajax({
+                    url: '/Course/Remove?id=' + id,
+                    success: function () {
+                        GetAllCourses();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Record Deleted UnsuccessFull.");
+                    }
+                });
+            }
+        }
 
         function ClearTextBox(){
+            $("#CourseId").val('');
             $("#CourseCode").val('');
             $("#Name").val('');
             $("#Description").val('');
             $("#CourseType").val('');
         }
     </script>
-
-
 
 }
 
