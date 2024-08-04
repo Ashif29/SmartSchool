@@ -33,7 +33,7 @@ namespace SmartSchool.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Create(Course courseObj)
+        public async Task<JsonResult> Create(Course courseObj)
         {
             var course = new Course()
             {
@@ -49,10 +49,22 @@ namespace SmartSchool.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                _courseService.CreateAsync(course);
+                await _courseService.CreateAsync(course);
                 TempData["success"] = "The villa has been created successfully.";
             }
             return new JsonResult("Course Saved Successfully");
         }
+
+
+        public async Task<JsonResult> Remove(int id)
+        {
+            var course = await _courseService.GetAsync(id);
+            if (course != null)
+            {
+                await _courseService.RemoveAsync(course);
+            }
+            return new JsonResult("Data Deleted");
+        }
+
     }
 }
