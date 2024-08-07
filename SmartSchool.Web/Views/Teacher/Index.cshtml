@@ -1,0 +1,80 @@
+﻿@model Teacher
+
+<div class="w-100 card border-0 p-4">
+    <div class="card-header bg-info bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Teachers List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body border p-4">
+        <div class="row pb-3">
+            <div class="col-6 offset-6 text-end">
+
+                <button type="button" id="btnCreateTeacher" class="btn btn-sm btn-outline-success" data-bs-toggle="modal">
+                    Add new Teacher
+                </button>
+
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Gender</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="table_data">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            GetAllTeacher();
+        });
+
+        function GetAllTeacher() {
+            $('.spinner').show();
+            $.ajax({
+                url: '/Teacher/GetTeacherList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result, status, xhr) {
+                    $('.spinner').hide();
+                    var object = '';
+                    $.each(result, function (index, item) {
+                        object += '<tr>';
+                        object += '<td>' + item.id + '</td>';
+                        object += '<td>' + item.name + '</td>';
+                        object += '<td>' + item.designation + '</td>';
+                        object += '<td>' + item.gender + '</td>';
+                        object += '<td>',
+                        object += '<a href="#" onclick="GetTeacherById(' + item.id + ')" class="btn btn-primary">Edit</a>';
+                        object += '||';
+                        object += '<a href="#" onclick="RemoveTeacher(' + item.id + ')" class="btn btn-danger">Delete</a>';
+                        object += '</td>';
+                        object += '</tr>';
+                    });
+                    $('#table_data').html(object);
+                },
+                error: function (xhr, status, error) {
+                    $('.spinner').hide();
+                    alert("Data can't get");
+                }
+            });
+        }
+
+    </script>
+
+}
+
+
+
