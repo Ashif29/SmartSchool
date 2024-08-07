@@ -171,6 +171,21 @@
             });
         }
 
+
+        function RemoveTeacher(id) {
+            if (confirm('Are you sure, you want to delete this record?')) {
+                $.ajax({
+                    url: '/Teacher/Remove?id=' + id,
+                    success: function () {
+                        GetAllTeacher();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Record Deleted UnsuccessFull.");
+                    }
+                });
+            }
+        }
+
         function ClearTextBox() {
             $("#TeacherId").val('');
             $("#Name").val('');

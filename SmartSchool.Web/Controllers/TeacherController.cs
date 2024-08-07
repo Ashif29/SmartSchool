@@ -48,5 +48,16 @@ namespace SmartSchool.Web.Controllers
             await _teacherService.CreateAsync(teacher);
             return new JsonResult("Teacher Added Successfully");
         }
+
+
+        public async Task<JsonResult> Remove(int id)
+        {
+            var teacher = await _teacherService.GetAsync(id);
+            if (teacher != null)
+            {
+                await _teacherService.RemoveAsync(teacher);
+            }
+            return new JsonResult("Data Deleted");
+        }
     }
 }
