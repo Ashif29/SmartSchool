@@ -50,7 +50,7 @@ namespace SmartSchool.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _courseService.CreateAsync(course);
-                TempData["success"] = "The villa has been created successfully.";
+                TempData["success"] = "The course has been created successfully.";
             }
             return new JsonResult("Course Saved Successfully");
         }

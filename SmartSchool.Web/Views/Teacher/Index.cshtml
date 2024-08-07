@@ -34,11 +34,80 @@
     </div>
 </div>
 
+
+
+
+
+<div class="modal fade" id="CreateTeacherModalShow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="border: 1px solid #aaa; border-radius:7px;">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h2 class="modal-title text-center text-white" id="createTeacherModalLabel">Add New Teacher</h2>
+
+            </div>
+            <div class="modal-body m-0">
+                <form method="post" class="row" enctype="multipart/form-data">
+                    <div class="p-3">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-floating py-1">
+                            <input asp-for="Id" disabled="disabled" style="display:none" id="TeacherId" class="form-control border shadow" />
+                            <label asp-for="Id" class="ms-2"></label>
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Name" id="Name" class="form-control border shadow" />
+                            <label asp-for="Name" class="ms-2"></label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Designation" id="Designation" class="form-control border shadow" />
+                            <label asp-for="Designation" class="ms-2"></label>
+                            <span asp-validation-for="Designation" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Gender" id="Gender" class="form-control border shadow" />
+                            <label asp-for="Gender" class="ms-2"></label>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input asp-for="Address" id="Address" class="form-control border shadow" />
+                            <label asp-for="Address" class="ms-2"></label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-1">
+                            <input type="date" asp-for="DateOfBirth" id="DateOfBirth" class="form-control border shadow" />
+                            <label asp-for="DateOfBirth" class="ms-2"></label>
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="CreateTeacher" onclick="AddTeacher()" data-bs-dismiss="modal">Add</button>
+                <button type="button" class="btn btn-warning" style="display:none" id="UpdateTeacher" data-bs-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-danger" id="Cancel" data-bs-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 @section scripts {
     <script>
 
         $(document).ready(function () {
             GetAllTeacher();
+        });
+
+        $('#btnCreateTeacher').click(function () {
+            $('#CreateTeacherModalShow').modal('show');
         });
 
         function GetAllTeacher() {
@@ -70,6 +139,45 @@
                     alert("Data can't get");
                 }
             });
+        }
+
+        function AddTeacher() {
+            $('.spinner').show();
+            var objData = {
+                name: $("#Name").val(),
+                designation: $("#Designation").val(),
+                gender: $("#Gender").val(),
+                address: $("#Address").val(),
+                dateOfBirth: $("#DateOfBirth").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                data: objData,
+                url: "@Url.Action("Create", "Teacher")",
+                success: function (data) {
+                    ClearTextBox();
+                    GetAllTeacher();
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function ClearTextBox() {
+            $("#TeacherId").val('');
+            $("#Name").val('');
+            $("#Designation").val('');
+            $("#Gender").val('');
+            $("#Address").val('');
+            $("#DateOfBirth").val('');
         }
 
     </script>
