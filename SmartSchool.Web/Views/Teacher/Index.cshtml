@@ -90,7 +90,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="CreateTeacher" onclick="AddTeacher()" data-bs-dismiss="modal">Add</button>
-                <button type="button" class="btn btn-warning" style="display:none" id="UpdateTeacher" data-bs-dismiss="modal">Update</button>
+                <button type="button" class="btn btn-warning" style="display:none" id="UpdateTeacher" onclick="UpdateTeacher()" data-bs-dismiss="modal">Update</button>
                 <button type="button" class="btn btn-danger" id="Cancel" data-bs-dismiss="modal">Cancel</button>
             </div>
 
@@ -158,6 +158,64 @@
                 success: function (data) {
                     ClearTextBox();
                     GetAllTeacher();
+                    $('.spinner').hide();
+                },
+                failure: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    $('.spinner').hide();
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function GetTeacherById(id) {
+            $.ajax({
+                url: '/Teacher/Update?id=' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $('#TeacherId').css("display", "block");
+                    $('#CreateTeacherModalShow').modal('show');
+                    $('#CreateTeacher').css("display", "none");
+                    $('#UpdateTeacher').css("display", "block");
+                    $('#TeacherId').val(result.id);
+                    $('#Name').val(result.name);
+                    $('#Designation').val(result.designation);
+                    $('#Gender').val(result.gender);
+                    $('#Address').val(result.address);
+                    $('#DateOfBirth').val(result.dateOfBirth);
+                },
+                error: function () {
+                    alert("Data can't get");
+                }
+            });
+        }
+
+
+
+        function UpdateTeacher() {
+            var objData = {
+                id: $("#TeacherId").val(),
+                name: $("#Name").val(),
+                designation: $("#Designation").val(),
+                gender: $("#Gender").val(),
+                address: $("#Address").val(),
+                dateOfBirth: $("#DateOfBirth").val()
+            };
+            $.ajax({
+                type: "POST",
+                data: objData,
+                url: "@Url.Action("Update", "Teacher")",
+                success: function (data) {
+                    ClearTextBox();
+                    GetAllTeacher();
+                    $('#CreateTeacher').css("display", "block");
+                    $('#UpdateTeacher').css("display", "none");
+                    $('#TeacherId').css("display", "none");
+                    $('#TeacherId').hide();
                     $('.spinner').hide();
                 },
                 failure: function (response) {

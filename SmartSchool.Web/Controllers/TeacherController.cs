@@ -50,6 +50,22 @@ namespace SmartSchool.Web.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<JsonResult> Update(int id)
+        {
+            var teacher = await _teacherService.GetAsync(id);
+            return new JsonResult(teacher);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> Update(Teacher teacher)
+        {
+            await _teacherService.UpdateAsync(teacher);
+            return new JsonResult("Teacher Updated");
+        }
+
+
         public async Task<JsonResult> Remove(int id)
         {
             var teacher = await _teacherService.GetAsync(id);
