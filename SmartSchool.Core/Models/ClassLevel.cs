@@ -1,4 +1,5 @@
 ﻿using SmartSchool.Core.Models.RoomModels;
+using SmartSchool.Core.Models.StudentModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +25,9 @@ namespace SmartSchool.Core.Models
         [ForeignKey("RoomNumber")]
 
         public Room Room { get; set; }
+
+        // Navigation property for the related students
+        public List<Student> Students { get; set; }
 
     }
 }

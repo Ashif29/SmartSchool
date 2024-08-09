@@ -24,5 +24,12 @@ namespace SmartSchool.Core.Models.StudentModels
 
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+
+        // Foreign key for SchoolClass
+        public int ClassLevelNumber { get; set; }
+
+        // Navigation property for the related SchoolClass
+        [ForeignKey("ClassLevelNumber")]
+        public ClassLevel ClassLevel { get; set; }
     }
 }
