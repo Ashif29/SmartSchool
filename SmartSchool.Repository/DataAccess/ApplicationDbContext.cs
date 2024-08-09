@@ -53,22 +53,37 @@ namespace SmartSchool.Repository.DataAccess
 
                 new Room { RoomNumber = 3001, Description = "Common Room", RoomType = RoomType.CommonRoom, IsAvailable = true, Capacity = 50 },
                 new Room { RoomNumber = 3002, Description = "Common Room", RoomType = RoomType.CommonRoom, IsAvailable = true, Capacity = 50 },
-                
+
                 new Room { RoomNumber = 4001, Description = "Seminar Room", RoomType = RoomType.SeminarRoom, IsAvailable = true, Capacity = 300 },
-                
+
                 new Room { RoomNumber = 5001, Description = "Meeting Room for Teachers", RoomType = RoomType.MeetingRoom, IsAvailable = true, Capacity = 50 },
-                
+
                 new Room { RoomNumber = 6001, Description = "Sports Room", RoomType = RoomType.SportsRoom, IsAvailable = true, Capacity = 100 },
                 new Room { RoomNumber = 6002, Description = "Sports Room", RoomType = RoomType.SportsRoom, IsAvailable = true, Capacity = 100 },
 
                 new Room { RoomNumber = 7001, Description = "Register Room", RoomType = RoomType.RegisterRoom, IsAvailable = true, Capacity = 10 },
-                
+
                 new Room { RoomNumber = 8001, Description = "Store Room", RoomType = RoomType.StoreRoom, IsAvailable = true, Capacity = 100 },
-                
+
                 new Room { RoomNumber = 9001, Description = "Staff Room", RoomType = RoomType.StaffRoom, IsAvailable = true, Capacity = 10 },
                 new Room { RoomNumber = 9002, Description = "Staff Room", RoomType = RoomType.StaffRoom, IsAvailable = true, Capacity = 10 }
 
             );
+
+
+            // Seed SchoolClass data
+            modelBuilder.Entity<ClassLevel>().HasData(
+                new ClassLevel { LevelNumber = 1, Name = "Class One", RoomNumber = 1001 },
+                new ClassLevel { LevelNumber = 2, Name = "Class Two", RoomNumber = 1002 },
+                new ClassLevel { LevelNumber = 3, Name = "Class Three", RoomNumber = 1003 },
+                new ClassLevel { LevelNumber = 4, Name = "Class Four", RoomNumber = 1004 },
+                new ClassLevel { LevelNumber = 5, Name = "Class Five", RoomNumber = 1005 },
+                new ClassLevel { LevelNumber = 6, Name = "Class Six", RoomNumber = 1006 },
+                new ClassLevel { LevelNumber = 7, Name = "Class Seven", RoomNumber = 1007 },
+                new ClassLevel { LevelNumber = 8, Name = "Class Eight", RoomNumber = 1008 }
+
+            );
+
         }
     }
 }
