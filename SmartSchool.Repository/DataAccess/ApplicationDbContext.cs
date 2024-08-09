@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartSchool.Core.Models.Course;
-using SmartSchool.Core.Models.Room;
-using SmartSchool.Core.Models.Student;
-using SmartSchool.Core.Models.Teacher;
+using SmartSchool.Core.Models;
+using SmartSchool.Core.Models.CourseModels;
+using SmartSchool.Core.Models.RoomModels;
+using SmartSchool.Core.Models.StudentModels;
+using SmartSchool.Core.Models.TeacherModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

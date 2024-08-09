@@ -5,25 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSchool.Core.Models.Teacher.DTOs
+namespace SmartSchool.Core.Models.StudentModels.DTOs
 {
-    public class TeacherCreateDTO
+    public class StudentCreateDTO
     {
         [Required]
         [MaxLength(30)]
-        public string Name { get; set; }
 
-        [Required]
-        public Designation Designation { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string Address { get; set; }
 
         [Required]
+
         public Gender Gender { get; set; }
 
-        [Required]
         public DateOnly DateOfBirth { get; set; }
     }
 }

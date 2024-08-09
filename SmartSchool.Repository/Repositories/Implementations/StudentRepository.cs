@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartSchool.Core.Models.Student;
+using SmartSchool.Core.Models.StudentModels;
 using SmartSchool.Repository.DataAccess;
 using SmartSchool.Repository.Repositories.Contracts;
 using System;

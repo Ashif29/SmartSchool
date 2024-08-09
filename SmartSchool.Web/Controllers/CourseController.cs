@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using SmartSchool.Core.Models.Course;
+using SmartSchool.Core.Models.CourseModels;
 using SmartSchool.Service.Services.Contracts;
 
 namespace SmartSchool.Web.Controllers

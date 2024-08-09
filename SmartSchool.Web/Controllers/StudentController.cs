@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmartSchool.Core.Models.Student;
+using SmartSchool.Core.Models.StudentModels;
 using SmartSchool.Service.Services.Contracts;
 
 namespace SmartSchool.Web.Controllers

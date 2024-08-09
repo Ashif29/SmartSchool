@@ -1,4 +1,4 @@
-﻿using SmartSchool.Core.Models.Teacher;
+﻿using SmartSchool.Core.Models.TeacherModels;
 using SmartSchool.Repository.Repositories.Contracts;
 using SmartSchool.Service.Services.Contracts;
 using System;

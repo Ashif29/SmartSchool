@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SmartSchool.Core.Models.Course;
-using SmartSchool.Core.Models.Teacher;
+using SmartSchool.Core.Models.TeacherModels;
 using SmartSchool.Service.Services.Contracts;
 using SmartSchool.Service.Services.Implementations;
 

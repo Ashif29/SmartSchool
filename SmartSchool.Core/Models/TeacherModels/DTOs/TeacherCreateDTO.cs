@@ -4,25 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartSchool.Core.Models.TeacherModels;
 
-namespace SmartSchool.Core.Models.Student.DTOs
+namespace SmartSchool.Core.Models.TeacherModels.DTOs
 {
-    public class StudentUpdateDTO
+    public class TeacherCreateDTO
     {
         [Required]
-        public int Id { get; set; }
+        [MaxLength(30)]
+        public string Name { get; set; }
 
         [Required]
-        [MaxLength(30)]
-
-        public string Name { get; set; }
+        public Designation Designation { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string Address { get; set; }
 
         [Required]
-
         public Gender Gender { get; set; }
 
         [Required]

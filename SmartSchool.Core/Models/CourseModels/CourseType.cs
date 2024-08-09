@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSchool.Core.Models.Course
+namespace SmartSchool.Core.Models.CourseModels
 {
     public enum CourseType
     {

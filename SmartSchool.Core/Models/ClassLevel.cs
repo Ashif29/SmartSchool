@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartSchool.Core.Models.RoomModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSchool.Core.Models.Room
+namespace SmartSchool.Core.Models
 {
     public class ClassLevel
     {
-        
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int LevelNumber {  get; set; }
+        public int LevelNumber { get; set; }
 
         [Required]
         public string Name { get; set; }

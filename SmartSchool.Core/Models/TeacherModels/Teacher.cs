@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartSchool.Core.Models.Teacher.DTOs
+namespace SmartSchool.Core.Models.TeacherModels
 {
-    public class TeacherUpdateDTO
+    public class Teacher
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(30)]
         public string Name { get; set; }
 
-        [Required]
         public Designation Designation { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         public string Address { get; set; }
 
-        [Required]
         public Gender Gender { get; set; }
 
-        [Required]
         public DateOnly DateOfBirth { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using SmartSchool.Core.Models.Course;
-using SmartSchool.Core.Models.Student;
+﻿using SmartSchool.Core.Models.CourseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
