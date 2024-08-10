@@ -62,14 +62,20 @@
                         </div>
 
                         <div class="form-floating py-1">
-                            <input asp-for="Designation" id="Designation" class="form-control border shadow" />
-                            <label asp-for="Designation" class="ms-2"></label>
+                            @Html.DropDownList("Designation",
+                                Html.GetEnumSelectList<Designation>(),
+                                "Select Designation",
+                                new { @class = "form-control border shadow" }
+                            )
                             <span asp-validation-for="Designation" class="text-danger"></span>
                         </div>
 
                         <div class="form-floating py-1">
-                            <input asp-for="Gender" id="Gender" class="form-control border shadow" />
-                            <label asp-for="Gender" class="ms-2"></label>
+                            @Html.DropDownList("Gender",
+                                     Html.GetEnumSelectList<Gender>(),
+                                     "Select Gender",
+                                     new { @class = "form-control border shadow" }
+                                     )
                             <span asp-validation-for="Gender" class="text-danger"></span>
                         </div>
 
@@ -107,6 +113,10 @@
         });
 
         $('#btnCreateTeacher').click(function () {
+            ClearTextBox();
+            $('#TeacherId').css("display", "none");
+            $('#UpdateTeacher').css("display", "none");
+            $('#CreateTeacher').css("display", "block");
             $('#CreateTeacherModalShow').modal('show');
         });
 
@@ -192,6 +202,7 @@
                     alert("Data can't get");
                 }
             });
+            ClearTextBox();
         }
 
 
@@ -227,6 +238,7 @@
                     alert(response.responseText);
                 }
             });
+            ClearTextBox();
         }
 
 
