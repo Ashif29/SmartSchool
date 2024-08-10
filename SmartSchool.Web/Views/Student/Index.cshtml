@@ -23,6 +23,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
+                    <th>Class</th>
                     <th>Address</th>
                     <th>Gender</th>
                     <th></th>
@@ -59,6 +60,15 @@
                             <input asp-for="Name" id="Name" class="form-control border shadow" />
                             <label asp-for="Name" class="ms-2"></label>
                             <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-floating py-1 col-12">
+                            <select asp-for="ClassLevelNumber" class="form-select border shadow" id="ClassLevelNumber">
+                                <option disabled selected>--Select Class--</option>
+                            </select>
+                            <label>Select Class</label>
+                            <span asp-validation-for="ClassLevelNumber" class="text-danger"></span>
                         </div>
 
                         <div class="form-floating py-1">
@@ -98,11 +108,29 @@
 
         $(document).ready(function () {
             GetAllStudent();
+            GetAllClassLevelList();
         });
 
         $('#btnCreateStudent').click(function () {
+            ClearTextBox();
             $('#CreateStudentModalShow').modal('show');
         });
+
+        function GetAllClassLevelList(){
+            $.ajax({
+                url: '/ClassLevel/GetClassLevelList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $.each(result, function (index, item) {
+                        $('#ClassLevelNumber').append('<Option value=' + item.levelNumber + '>' + item.name + '</Option>');
+                    });
+                },
+                error: function () {
+                    alert("Data can't get");
+                }
+            });
+        }
 
         function GetAllStudent() {
             $('.spinner').show();
@@ -117,6 +145,7 @@
                         object += '<tr>';
                         object += '<td>' + item.id + '</td>';
                         object += '<td>' + item.name + '</td>';
+                        object += '<td>' + item.classLevelNumber + ' </td>';
                         object += '<td>' + item.address + '</td>';
                         object += '<td>' + item.gender + '</td>';
                         object += '<td>',
@@ -139,11 +168,11 @@
             $('.spinner').show();
             var objData = {
                 name: $("#Name").val(),
+                classLevelNumber: $("#ClassLevelNumber").val(),
                 address: $("#Address").val(),
                 gender: $("#Gender").val(),
                 dateOfBirth: $("#DateOfBirth").val()
             };
-
             $.ajax({
                 type: "POST",
                 data: objData,
@@ -176,6 +205,7 @@
                     $('#UpdateStudent').css("display", "block");
                     $('#StudentId').val(result.id);
                     $('#Name').val(result.name);
+                    $('#ClassLevelNumber').val(result.classLevelNumber);
                     $('#Gender').val(result.gender);
                     $('#Address').val(result.address);
                     $('#DateOfBirth').val(result.dateOfBirth);
@@ -184,14 +214,14 @@
                     alert("Data can't get");
                 }
             });
+            ClearTextBox();
         }
-
-
 
         function UpdateStudent() {
             var objData = {
                 id: $("#StudentId").val(),
                 name: $("#Name").val(),
+                classLevelNumber: $("#ClassLevelNumber").val(),
                 gender: $("#Gender").val(),
                 address: $("#Address").val(),
                 dateOfBirth: $("#DateOfBirth").val()
@@ -218,8 +248,8 @@
                     alert(response.responseText);
                 }
             });
+            ClearTextBox();
         }
-
 
         function RemoveStudent(id) {
             if (confirm('Are you sure, you want to delete this record?')) {
@@ -237,6 +267,7 @@
 
         function ClearTextBox() {
             $("#StudentId").val('');
+            $("#ClassLevelNumber").val('');
             $("#Name").val('');
             $("#Gender").val('');
             $("#Address").val('');

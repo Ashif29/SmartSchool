@@ -37,6 +37,7 @@ namespace SmartSchool.Web.Controllers
             var student = new Student()
             {
                 Name = studentObj.Name,
+                ClassLevelNumber = studentObj.ClassLevelNumber,
                 Gender = studentObj.Gender,
                 Address = studentObj.Address,
                 DateOfBirth = studentObj.DateOfBirth
