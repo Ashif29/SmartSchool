@@ -12,8 +12,8 @@ using SmartSchool.Repository.DataAccess;
 namespace SmartSchool.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240809105643_AddedClassLevelTableToDataBase")]
-    partial class AddedClassLevelTableToDataBase
+    [Migration("20240810063858_AddedClassLevelTableToDb")]
+    partial class AddedClassLevelTableToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,41 +25,7 @@ namespace SmartSchool.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SmartSchool.Core.Models.Course.Course", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CourseCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CourseType")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("SmartSchool.Core.Models.Room.ClassLevel", b =>
+            modelBuilder.Entity("SmartSchool.Core.Models.ClassLevel", b =>
                 {
                     b.Property<int>("LevelNumber")
                         .HasColumnType("int");
@@ -75,7 +41,7 @@ namespace SmartSchool.Repository.Migrations
 
                     b.HasIndex("RoomNumber");
 
-                    b.ToTable("ClassLevel");
+                    b.ToTable("ClassLevels");
 
                     b.HasData(
                         new
@@ -128,7 +94,41 @@ namespace SmartSchool.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SmartSchool.Core.Models.Room.Room", b =>
+            modelBuilder.Entity("SmartSchool.Core.Models.CourseModels.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CourseCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CourseType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("SmartSchool.Core.Models.RoomModels.Room", b =>
                 {
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
@@ -376,7 +376,7 @@ namespace SmartSchool.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SmartSchool.Core.Models.Student.Student", b =>
+            modelBuilder.Entity("SmartSchool.Core.Models.StudentModels.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -387,6 +387,9 @@ namespace SmartSchool.Repository.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClassLevelNumber")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -406,10 +409,12 @@ namespace SmartSchool.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClassLevelNumber");
+
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("SmartSchool.Core.Models.Teacher.Teacher", b =>
+            modelBuilder.Entity("SmartSchool.Core.Models.TeacherModels.Teacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -445,15 +450,31 @@ namespace SmartSchool.Repository.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("SmartSchool.Core.Models.Room.ClassLevel", b =>
+            modelBuilder.Entity("SmartSchool.Core.Models.ClassLevel", b =>
                 {
-                    b.HasOne("SmartSchool.Core.Models.Room.Room", "Room")
+                    b.HasOne("SmartSchool.Core.Models.RoomModels.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("SmartSchool.Core.Models.StudentModels.Student", b =>
+                {
+                    b.HasOne("SmartSchool.Core.Models.ClassLevel", "ClassLevel")
+                        .WithMany("Students")
+                        .HasForeignKey("ClassLevelNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ClassLevel");
+                });
+
+            modelBuilder.Entity("SmartSchool.Core.Models.ClassLevel", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

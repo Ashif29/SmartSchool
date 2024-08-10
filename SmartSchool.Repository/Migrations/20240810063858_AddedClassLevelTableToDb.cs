@@ -7,13 +7,20 @@
 namespace SmartSchool.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedClassLevelTableToDataBase : Migration
+    public partial class AddedClassLevelTableToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "ClassLevelNumber",
+                table: "Students",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
-                name: "ClassLevel",
+                name: "ClassLevels",
                 columns: table => new
                 {
                     LevelNumber = table.Column<int>(type: "int", nullable: false),
@@ -22,9 +29,9 @@ namespace SmartSchool.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassLevel", x => x.LevelNumber);
+                    table.PrimaryKey("PK_ClassLevels", x => x.LevelNumber);
                     table.ForeignKey(
-                        name: "FK_ClassLevel_Rooms_RoomNumber",
+                        name: "FK_ClassLevels_Rooms_RoomNumber",
                         column: x => x.RoomNumber,
                         principalTable: "Rooms",
                         principalColumn: "RoomNumber",
@@ -32,7 +39,7 @@ namespace SmartSchool.Repository.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "ClassLevel",
+                table: "ClassLevels",
                 columns: new[] { "LevelNumber", "Name", "RoomNumber" },
                 values: new object[,]
                 {
@@ -47,16 +54,41 @@ namespace SmartSchool.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClassLevel_RoomNumber",
-                table: "ClassLevel",
+                name: "IX_Students_ClassLevelNumber",
+                table: "Students",
+                column: "ClassLevelNumber");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClassLevels_RoomNumber",
+                table: "ClassLevels",
                 column: "RoomNumber");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Students_ClassLevels_ClassLevelNumber",
+                table: "Students",
+                column: "ClassLevelNumber",
+                principalTable: "ClassLevels",
+                principalColumn: "LevelNumber",
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Students_ClassLevels_ClassLevelNumber",
+                table: "Students");
+
             migrationBuilder.DropTable(
-                name: "ClassLevel");
+                name: "ClassLevels");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Students_ClassLevelNumber",
+                table: "Students");
+
+            migrationBuilder.DropColumn(
+                name: "ClassLevelNumber",
+                table: "Students");
         }
     }
 }

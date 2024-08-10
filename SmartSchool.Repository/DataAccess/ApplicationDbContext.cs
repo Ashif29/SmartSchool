@@ -25,6 +25,8 @@ namespace SmartSchool.Repository.DataAccess
 
         public DbSet<Room> Rooms { get; set; }
 
+        public DbSet<ClassLevel> ClassLevels { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
