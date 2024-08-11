@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartSchool.Repository.DataAccess;
 
@@ -11,9 +12,11 @@ using SmartSchool.Repository.DataAccess;
 namespace SmartSchool.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240811084838_SeedCoursseTable")]
+    partial class SeedCoursseTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,7 +141,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-I",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -149,7 +152,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-I",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -160,7 +163,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-I",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -171,7 +174,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-I",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -182,7 +185,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-II",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -193,7 +196,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-II",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -204,7 +207,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-II",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -215,7 +218,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-II",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -226,7 +229,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-III",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -237,7 +240,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-III",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -248,7 +251,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-III",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -259,7 +262,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-III",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -270,7 +273,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-IV",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -281,7 +284,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-IV",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -292,7 +295,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-IV",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -303,7 +306,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-IV",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -314,7 +317,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-V",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -325,7 +328,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-V",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -336,7 +339,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-V",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -347,7 +350,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-V",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -358,7 +361,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-VI",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -369,7 +372,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-VI",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -380,7 +383,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-VI",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -391,7 +394,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-VI",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -402,7 +405,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-VII",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -413,7 +416,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-VII",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -424,7 +427,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-VII",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -435,7 +438,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-VII",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -446,7 +449,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Bangla-VIII",
+                            Name = "Bangla",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -457,7 +460,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "English-VIII",
+                            Name = "English",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -468,7 +471,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an regular course.",
-                            Name = "Mathematics-VIII",
+                            Name = "Mathematics",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -479,7 +482,7 @@ namespace SmartSchool.Repository.Migrations
                             CourseType = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This is an optional course.",
-                            Name = "Religion-VIII",
+                            Name = "Religion",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

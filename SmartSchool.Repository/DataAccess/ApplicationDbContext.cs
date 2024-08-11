@@ -87,6 +87,51 @@ namespace SmartSchool.Repository.DataAccess
 
             );
 
+
+            // Seed Course data
+            modelBuilder.Entity<Course>().HasData(
+                new Course { Id = 1, CourseCode = "Ban-1", Name = "Bangla-I", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 1 },
+                new Course { Id = 2, CourseCode = "Eng-1", Name = "English-I", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 1 },
+                new Course { Id = 3, CourseCode = "Math-1", Name = "Mathematics-I", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 1 },
+                new Course { Id = 4, CourseCode = "Rel-1", Name = "Religion-I", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 1 },
+
+                new Course { Id = 5, CourseCode = "Ban-2", Name = "Bangla-II", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 2 },
+                new Course { Id = 6, CourseCode = "Eng-2", Name = "English-II", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 2 },
+                new Course { Id = 7, CourseCode = "Math-2", Name = "Mathematics-II", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 2 },
+                new Course { Id = 8, CourseCode = "Rel-2", Name = "Religion-II", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 2 },
+
+                new Course { Id = 9, CourseCode = "Ban-3", Name = "Bangla-III", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 3 },
+                new Course { Id = 10, CourseCode = "Eng-3", Name = "English-III", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 3 },
+                new Course { Id = 11, CourseCode = "Math-3", Name = "Mathematics-III", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 3 },
+                new Course { Id = 12, CourseCode = "Rel-3", Name = "Religion-III", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 3 },
+
+                new Course { Id = 13, CourseCode = "Ban-4", Name = "Bangla-IV", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 4 },
+                new Course { Id = 14, CourseCode = "Eng-4", Name = "English-IV", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 4 },
+                new Course { Id = 15, CourseCode = "Math-4", Name = "Mathematics-IV", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 4 },
+                new Course { Id = 16, CourseCode = "Rel-4", Name = "Religion-IV", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 4 },
+
+                new Course { Id = 17, CourseCode = "Ban-5", Name = "Bangla-V", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 5 },
+                new Course { Id = 18, CourseCode = "Eng-5", Name = "English-V", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 5 },
+                new Course { Id = 19, CourseCode = "Math-5", Name = "Mathematics-V", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 5 },
+                new Course { Id = 20, CourseCode = "Rel-5", Name = "Religion-V", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 5 },
+
+                new Course { Id = 21, CourseCode = "Ban-6", Name = "Bangla-VI", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 6 },
+                new Course { Id = 22, CourseCode = "Eng-6", Name = "English-VI", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 6 },
+                new Course { Id = 23, CourseCode = "Math-6", Name = "Mathematics-VI", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 6 },
+                new Course { Id = 24, CourseCode = "Rel-6", Name = "Religion-VI", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 6 },
+
+                new Course { Id = 25, CourseCode = "Ban-7", Name = "Bangla-VII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 7 },
+                new Course { Id = 26, CourseCode = "Eng-7", Name = "English-VII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 7 },
+                new Course { Id = 27, CourseCode = "Math-7", Name = "Mathematics-VII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 7 },
+                new Course { Id = 28, CourseCode = "Rel-7", Name = "Religion-VII", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 7 },
+
+                new Course { Id = 29, CourseCode = "Ban-8", Name = "Bangla-VIII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 8 },
+                new Course { Id = 30, CourseCode = "Eng-8", Name = "English-VIII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 8 },
+                new Course { Id = 31, CourseCode = "Math-8", Name = "Mathematics-VIII", Description = "This is an regular course.", CourseType = CourseType.Regular, ClassLevelNumber = 8 },
+                new Course { Id = 32, CourseCode = "Rel-8", Name = "Religion-VIII", Description = "This is an optional course.", CourseType = CourseType.Optional, ClassLevelNumber = 8 }
+
+            );
+
         }
     }
 }

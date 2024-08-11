@@ -1,4 +1,5 @@
-﻿using SmartSchool.Core.Models.RoomModels;
+﻿using SmartSchool.Core.Models.CourseModels;
+using SmartSchool.Core.Models.RoomModels;
 using SmartSchool.Core.Models.StudentModels;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,10 @@ namespace SmartSchool.Core.Models
         public Room Room { get; set; }
 
         // Navigation property for the related students
-        public List<Student> Students { get; set; }
+        public List<Student> StudentList { get; set; }
+
+        // Navigation property for the related Course
+        public List<Course> CourseList { get; set; }
 
     }
 }
