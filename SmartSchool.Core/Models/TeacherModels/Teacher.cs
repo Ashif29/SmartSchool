@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartSchool.Core.Models.CourseModels;
 
 namespace SmartSchool.Core.Models.TeacherModels
 {
@@ -26,5 +27,8 @@ namespace SmartSchool.Core.Models.TeacherModels
 
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+
+        // Navigation property for the related Course
+        public List<Course>? CourseList { get; set; }
     }
 }

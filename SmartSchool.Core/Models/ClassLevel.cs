@@ -31,7 +31,7 @@ namespace SmartSchool.Core.Models
         public List<Student> StudentList { get; set; }
 
         // Navigation property for the related Course
-        public List<Course> CourseList { get; set; }
+        public List<Course>? CourseList { get; set; }
 
     }
 }
