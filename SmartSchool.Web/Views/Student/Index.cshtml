@@ -80,7 +80,7 @@
                         <div class="form-floating py-1">
                             @Html.DropDownList("Gender",
                                 Html.GetEnumSelectList<Gender>(),
-                                "Select Gender",
+                                "--Select Gender--",
                                 new {@class = "form-control border shadow"}
                             )
                             <span asp-validation-for="Gender" class="text-danger"></span>
@@ -146,6 +146,7 @@
                 dataType: 'json',
                 success: function (result, status, xhr) {
                     $('.spinner').hide();
+                    alert(result[0].gender);
                     var object = '';
                     $.each(result, function (index, item) {
                         object += '<tr>';
