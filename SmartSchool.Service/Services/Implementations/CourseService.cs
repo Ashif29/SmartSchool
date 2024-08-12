@@ -4,6 +4,7 @@ using SmartSchool.Service.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +24,9 @@ namespace SmartSchool.Service.Services.Implementations
             await _courseRepository.CreateAsync(course);
         }
 
-        public async Task<List<Course>> GetAllAsync()
+        public async Task<List<Course>> GetAllAsync(Expression<Func<Course, bool>> filter = null)
         {
-            return await _courseRepository.GetAllAsync();
+            return await _courseRepository.GetAllAsync(filter);
         }
 
         public async Task<Course> GetAsync(int id)

@@ -5,6 +5,7 @@ using SmartSchool.Repository.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,9 +26,15 @@ namespace SmartSchool.Repository.Repositories.Implementations
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<Course>> GetAllAsync()
+        public async Task<List<Course>> GetAllAsync(Expression<Func<Course, bool>> filter = null)
         {
-            return await _db.Courses.ToListAsync();
+            IQueryable<Course> query = _db.Courses;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            return await query.ToListAsync();
         }
 
         public async Task<Course> GetByIdAsync(int id)
