@@ -1,0 +1,166 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <form method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="Course">Course</label>
+                    <select class="form-control" id="Course">
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a course.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Teacher">Teacher</label>
+                    <select class="form-control" id="Teacher">
+                        <option selected disabled value="">--Select Teacher--</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a teacher.
+                    </div>
+                </div>
+
+                <div class="form-group text-center mt-3">
+                    <button type="button" class="btn btn-primary" id="AssignCourse" onclick="AssignCourseToATeacher()">Assign</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Assignment Successful</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Course has been successfully assigned to the teacher.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+       @* var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show(); *@
+
+
+
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            GetAllNotTakenCourses();
+            GetTeacherList();
+        });
+
+        function GetAllNotTakenCourses() {
+            $('#Course').append('<option selected disabled value="">--Select Course--</option>');
+            $(".spinner").show();
+            $.ajax({
+                url: '/AssignCourse/GetNotTakenCourseList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $(".spinner").hide();
+                    $.each(result, function (index, item) {
+                        $('#Course').append('<Option value=' + item.id + '>' + item.name + '</Option>');
+                    });
+                },
+                error: function () {
+                    (".spinner").hide();
+                    alert("Data can't get");
+                }
+            });
+        }
+
+        function GetTeacherList() {
+            $(".spinner").show();
+            $.ajax({
+                url: '/Teacher/GetTeacherList',
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    $(".spinner").hide();
+                    $.each(result, function (index, item) {
+                        $('#Teacher').append('<Option value=' + item.id + '>' + item.name + '</Option>');
+                    });
+                },
+                error: function () {
+                    (".spinner").hide();
+                    alert("Data can't get");
+                }
+            });
+        }
+
+        function validateForm() {
+            var course = document.getElementById("Course");
+            var teacher = document.getElementById("Teacher");
+            var valid = true;
+
+            if (course.value === "") {
+                course.classList.add("is-invalid");
+                valid = false;
+            } else {
+                course.classList.remove("is-invalid");
+            }
+
+            if (teacher.value === "") {
+                teacher.classList.add("is-invalid");
+                valid = false;
+            } else {
+                teacher.classList.remove("is-invalid");
+            }
+
+            return valid; // Form will only be submitted if both dropdowns are valid
+        }
+
+        function AssignCourseToATeacher() {
+            if (validateForm()) {
+                $('.spinner').show();
+                var objData = {
+                    id: $("#Course").val(),
+                    teacherId: $("#Teacher").val(),
+                };
+
+                $.ajax({
+                    type: "POST",
+                    data: objData,
+                    url: "@Url.Action("AssignCourse", "AssignCourse")",
+                    success: function (data) {
+
+                        ClearTextBox();
+                        $("#Course").empty();
+                        GetAllNotTakenCourses();
+                        $('.spinner').hide();
+                        $('#successModal').modal('show');
+                    },
+                    failure: function (response) {
+                        $('.spinner').hide();
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        $('.spinner').hide();
+                        alert(response.responseText);
+                    }
+                });
+            }
+            
+        }
+
+        function ClearTextBox() {
+            $("#Course").val('');
+            $("#Teacher").val('');
+        }
+      
+    </script>
+}
+
