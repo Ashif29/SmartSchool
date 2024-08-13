@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SmartSchool.Core.Models;
 using SmartSchool.Core.Models.CourseModels;
 using SmartSchool.Core.Models.RoomModels;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SmartSchool.Repository.DataAccess
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
